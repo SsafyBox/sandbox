@@ -4,6 +4,7 @@ import com.ssafy.sandbox.domain.Todo;
 import com.ssafy.sandbox.service.TodoService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class TodoController {
 
     private final TodoService todoService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/todos")
     public TodoIdResponse saveTodo(@RequestBody Todo todo) {
         Long id = todoService.save(todo);
@@ -26,9 +28,15 @@ public class TodoController {
     }
 
     @PatchMapping("/todos/{id}")
-    public TodoIdResponse saveTodo(@PathVariable Long id) {
+    public TodoIdResponse updateTodo(@PathVariable Long id) {
         Long resId = todoService.update(id);
         return new TodoIdResponse(resId);
+    }
+
+    @DeleteMapping("/todos/{id}")
+    public String deleteTodo(@PathVariable Long id) {
+        todoService.delete(id);
+        return "Deleted Successfully";
     }
 
     @Data
@@ -39,15 +47,4 @@ public class TodoController {
             this.id = id;
         }
     }
-
-//    @Data
-//    static class FindTodoResponse {
-//        private Long id;
-//        private String content;
-//
-//        public FindTodoResponse(Long id, String content) {
-//            this.id = id;
-//            this.content = content;
-//        }
-//    }
 }
