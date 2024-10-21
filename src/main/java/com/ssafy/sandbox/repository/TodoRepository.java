@@ -20,4 +20,8 @@ public class TodoRepository {
         return todo.getId();
     }
 
+    public List<Todo> findAll() {
+        return em.createQuery("select t from Todo t", Todo.class)
+                .getResultList();
+    }
 }
