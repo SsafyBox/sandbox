@@ -9,26 +9,29 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    @Transactional
     public Long save(Todo todo) {
         return todoRepository.save(todo);
     }
 
+    @Transactional(readOnly = true)
     public List<Todo> findAll() {
         return todoRepository.findAll();
     }
 
-    @Transactional
     public Long update(Long id) {
         Todo todo = todoRepository.findOne(id);
-        todo.setDone(true);
+        todo.setCompleted(true);
 
         return todoRepository.update(todo);
+    }
+
+    public void delete(Long id) {
+        todoRepository.delete(id);
     }
 }

@@ -33,4 +33,8 @@ public class TodoRepository {
         em.merge(todo);
         return todo.getId();
     }
+
+    public void delete(Long id) {
+        em.remove(findOne(id));
+    }
 }
