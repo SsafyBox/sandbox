@@ -23,4 +23,12 @@ public class TodoService {
     public List<Todo> findAll() {
         return todoRepository.findAll();
     }
+
+    @Transactional
+    public Long update(Long id) {
+        Todo todo = todoRepository.findOne(id);
+        todo.setDone(true);
+
+        return todoRepository.update(todo);
+    }
 }

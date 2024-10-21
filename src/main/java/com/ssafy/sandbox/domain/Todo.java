@@ -15,4 +15,6 @@ public class Todo {
 
     private String content;
 
+    // 기본적으로 false 적용됨
+    private boolean done;
 }

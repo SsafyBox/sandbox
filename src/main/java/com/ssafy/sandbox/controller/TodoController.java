@@ -4,10 +4,7 @@ import com.ssafy.sandbox.domain.Todo;
 import com.ssafy.sandbox.service.TodoService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +15,9 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping("/todos")
-    public CreateTodoResponse saveTodo(@RequestBody Todo todo) {
+    public TodoIdResponse saveTodo(@RequestBody Todo todo) {
         Long id = todoService.save(todo);
-        return new CreateTodoResponse(id);
+        return new TodoIdResponse(id);
     }
 
     @GetMapping("/todos")
@@ -28,11 +25,17 @@ public class TodoController {
         return todoService.findAll();
     }
 
+    @PatchMapping("/todos/{id}")
+    public TodoIdResponse saveTodo(@PathVariable Long id) {
+        Long resId = todoService.update(id);
+        return new TodoIdResponse(resId);
+    }
+
     @Data
-    static class CreateTodoResponse {
+    static class TodoIdResponse {
         private Long id;
 
-        public CreateTodoResponse(Long id) {
+        public TodoIdResponse(Long id) {
             this.id = id;
         }
     }
