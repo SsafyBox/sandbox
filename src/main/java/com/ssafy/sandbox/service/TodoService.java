@@ -26,7 +26,7 @@ public class TodoService {
 
     public Long update(Long id) {
         Todo todo = todoRepository.findOne(id);
-        todo.setCompleted(true);
+        todo.setCompleted(!todo.isCompleted());
 
         return todoRepository.update(todo);
     }
