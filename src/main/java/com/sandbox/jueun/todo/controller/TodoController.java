@@ -4,6 +4,7 @@ import com.sandbox.jueun.todo.domain.Todo;
 import com.sandbox.jueun.todo.dto.TodoCreateRequestDto;
 import com.sandbox.jueun.todo.dto.TodoListResponseDto;
 import com.sandbox.jueun.todo.service.TodoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postTodo(@RequestBody TodoCreateRequestDto requestDto) {
+    public ResponseEntity<?> postTodo(@RequestBody @Valid TodoCreateRequestDto requestDto) {
         todoService.createTodo(requestDto.getContent());
 
         return ResponseEntity.ok().build();
