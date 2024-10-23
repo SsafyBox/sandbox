@@ -24,7 +24,7 @@ public class Todo {
         this.completed = false;
     }
 
-    public void togleCompleted() {
+    public void toggleCompleted() {
         this.completed = !completed;
     }
 }
