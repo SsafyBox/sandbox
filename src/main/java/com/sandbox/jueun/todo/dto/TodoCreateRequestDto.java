@@ -1,13 +1,12 @@
 package com.sandbox.jueun.todo.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
-@Setter
 @Getter
 public class TodoCreateRequestDto {
+    @NotNull
     private String content;
 }
