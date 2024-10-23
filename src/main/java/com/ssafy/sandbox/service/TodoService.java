@@ -1,12 +1,12 @@
 package com.ssafy.sandbox.service;
 
 import com.ssafy.sandbox.domain.Todo;
+import com.ssafy.sandbox.dto.response.FindAllTodoResponse;
+import com.ssafy.sandbox.dto.response.TodoIdResponse;
 import com.ssafy.sandbox.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -15,20 +15,20 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    public Long save(Todo todo) {
-        return todoRepository.save(todo);
+    public TodoIdResponse save(Todo todo) {
+        return new TodoIdResponse(todoRepository.save(todo));
     }
 
     @Transactional(readOnly = true)
-    public List<Todo> findAll() {
-        return todoRepository.findAll();
+    public FindAllTodoResponse findAll() {
+        return new FindAllTodoResponse(todoRepository.findAll());
     }
 
-    public Long update(Long id) {
+    public TodoIdResponse update(Long id) {
         Todo todo = todoRepository.findOne(id);
         todo.setCompleted(!todo.isCompleted());
 
-        return todoRepository.update(todo);
+        return new TodoIdResponse(todoRepository.update(todo));
     }
 
     public void delete(Long id) {

@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 public class TodoController {
@@ -22,23 +20,20 @@ public class TodoController {
     public TodoIdResponse saveTodo(@RequestBody CreateTodoRequest todoDto) {
         Todo todo = new Todo();
         todo.setContent(todoDto.getContent());
-        Long id = todoService.save(todo);
 
-        return new TodoIdResponse(id);
+        return todoService.save(todo);
     }
 
     @GetMapping("/todos")
     public FindAllTodoResponse findAllTodo() {
-        List<Todo> todos = todoService.findAll();
 
-        return new FindAllTodoResponse(todos);
+        return todoService.findAll();
     }
 
     @PatchMapping("/todos/{id}")
     public TodoIdResponse updateTodo(@PathVariable Long id) {
-        Long resId = todoService.update(id);
 
-        return new TodoIdResponse(resId);
+        return todoService.update(id);
     }
 
     @DeleteMapping("/todos/{id}")
