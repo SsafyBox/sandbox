@@ -27,7 +27,7 @@ public class TodoService {
     public void updateCompleted(long id) {
         Todo todo = todoRepository.findById(id).orElseThrow();
 
-        todo.togleCompleted();
+        todo.toggleCompleted();
 
         todoRepository.save(todo);
     }
