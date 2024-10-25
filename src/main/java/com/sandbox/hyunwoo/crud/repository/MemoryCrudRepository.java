@@ -1,15 +1,14 @@
 package com.sandbox.hyunwoo.crud.repository;
 
 
-
 import com.sandbox.hyunwoo.crud.dto.RequestTodo;
 import com.sandbox.hyunwoo.crud.dto.Todo;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@Primary
-//@Repository
+@Repository
 public class MemoryCrudRepository implements CrudRepository {
 
     private static final List<Todo> todos = new ArrayList<>();

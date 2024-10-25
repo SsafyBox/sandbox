@@ -3,10 +3,12 @@ package com.sandbox.hyunwoo.util;
 
 import com.sandbox.hyunwoo.crud.dto.Todo;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class TodoRowMapper implements RowMapper<Todo> {
     @Override
     public Todo mapRow(ResultSet rs, int rowNum) throws SQLException {

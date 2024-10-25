@@ -1,21 +1,22 @@
 package com.sandbox.hyunwoo.crud.dto;
 
+
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
+import java.util.List;
+
 @ToString
+@Getter
 public class ResponseTodo {
-    private Long id;
-    private String content;
-    private boolean completed;
+    private String message;
+    private List<Todo> todos;
 
     public ResponseTodo() {
     }
 
-    public ResponseTodo(Long id, String content, boolean completed) {
-        this.id = id;
-        this.content = content;
-        this.completed = completed;
+    public ResponseTodo(String message, List<Todo> todos) {
+        this.message = message;
+        this.todos = todos;
     }
 }
