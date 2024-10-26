@@ -32,4 +32,20 @@ public class ArticleController {
 
        return ResponseEntity.ok().body(responseDto);
     }
+
+    @GetMapping("/paging/cursor")
+    public ResponseEntity<?> getArticlesWithCursor(
+            @RequestParam(defaultValue = "10") Integer size,
+            @RequestParam(defaultValue = "0") Long cursorId)
+    {
+        log.info("size {}, cursorId {}", size, cursorId);
+
+        PageRequest pageRequest = PageRequest.of(0, size);
+
+        Slice<ArticlePreviewDto> result = articleService.getArticlesWithCursor(pageRequest, cursorId);
+
+        ArticleCursorListResponseDto responseDto = ArticleCursorListResponseDto.from(result);
+
+        return ResponseEntity.ok().body(responseDto);
+    }
 }

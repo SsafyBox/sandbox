@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,4 +23,8 @@ public class ArticleService {
         return articleRepository.findPageBy(pageable);
     }
 
+    @Transactional(readOnly = true)
+    public Slice<ArticlePreviewDto> getArticlesWithCursor(Pageable pageable, Long cursorId) {
+        return articleRepository.findSliceByIdGreaterThan(pageable, cursorId);
+    }
 }

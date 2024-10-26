@@ -8,12 +8,10 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     public Page<ArticlePreviewDto> findPageBy(Pageable pageable);
 
+    public Slice<ArticlePreviewDto> findSliceByIdGreaterThan(Pageable pageable, Long id);
 }
