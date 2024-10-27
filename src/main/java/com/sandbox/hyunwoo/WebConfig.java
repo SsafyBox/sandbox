@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://ssafysandbox.vercel.app", "https://ssafysandbox.vercel.app/paging") // 특정 출처만 허용
+                .allowedOrigins("https://ssafysandbox.vercel.app")
                 .allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTION")
                 .allowedHeaders("Authorization", "Content-Type")
                 .exposedHeaders("Custom-Header")
