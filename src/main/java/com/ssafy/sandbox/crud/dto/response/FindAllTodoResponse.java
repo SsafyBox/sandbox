@@ -1,6 +1,6 @@
-package com.ssafy.sandbox.dto.response;
+package com.ssafy.sandbox.crud.dto.response;
 
-import com.ssafy.sandbox.domain.Todo;
+import com.ssafy.sandbox.crud.domain.Todo;
 import lombok.Builder;
 import lombok.Data;
 
