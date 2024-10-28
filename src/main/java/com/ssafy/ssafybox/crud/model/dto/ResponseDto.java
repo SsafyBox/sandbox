@@ -1,4 +1,4 @@
-package com.ssafy.ssafybox.model.dto;
+package com.ssafy.ssafybox.crud.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +13,6 @@ public class ResponseDto {
 
     private String message;
     private List<TodoDto> todos;
-
-    public ResponseDto() {}
 
     public ResponseDto(String message) {
         this.message = message;
