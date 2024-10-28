@@ -17,20 +17,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/articles")
+@RequestMapping("/articles/paging")
 public class ArticleController {
 
     private final ArticleService articleService;
     private static final String DEFAULT_PAGE_NO = "1";
     private static final String DEFAULT_PAGE_SIZE = "10";
-    private static final String SORT_CRITERIA = "createdAt";
 
-    @GetMapping("/paging/offset")
+    @GetMapping("/offset")
     public ResponseEntity<ArticlesByOffsetResponse> findArticleByOffset(@RequestParam(defaultValue = DEFAULT_PAGE_NO) Integer page,
                                                 @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ArticleResponse> list = articleService.findArticleByOffset(pageable);
-        System.out.println(list.getContent());
 
         ArticlesByOffsetResponse articles = ArticlesByOffsetResponse.builder()
                 .currentPageNumber(list.getNumber())
@@ -43,5 +41,6 @@ public class ArticleController {
 
         return ResponseEntity.ok(articles);
     }
+
 
 }
