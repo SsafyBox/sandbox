@@ -1,9 +1,9 @@
-package com.ssafy.sandbox.controller;
+package com.ssafy.sandbox.crud.controller;
 
-import com.ssafy.sandbox.dto.request.CreateRequestDto;
-import com.ssafy.sandbox.dto.response.CreateResponseDto;
-import com.ssafy.sandbox.dto.response.ReadResponseDto;
-import com.ssafy.sandbox.service.TodoService;
+import com.ssafy.sandbox.crud.dto.request.CreateRequestDto;
+import com.ssafy.sandbox.crud.dto.response.CreateResponseDto;
+import com.ssafy.sandbox.crud.dto.response.ReadResponseDto;
+import com.ssafy.sandbox.crud.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

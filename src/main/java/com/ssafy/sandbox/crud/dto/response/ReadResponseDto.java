@@ -1,6 +1,6 @@
-package com.ssafy.sandbox.dto.response;
+package com.ssafy.sandbox.crud.dto.response;
 
-import com.ssafy.sandbox.domain.TodoEntity;
+import com.ssafy.sandbox.crud.domain.TodoEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
