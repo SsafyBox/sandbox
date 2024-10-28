@@ -10,6 +10,5 @@ public class SsafyboxApplication {
 		SpringApplication.run(SsafyboxApplication.class, args);
 
 		System.out.println("정상적으로 서버가 실행되었습니다.");
-
 	}
 }
