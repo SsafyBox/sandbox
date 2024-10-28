@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.domain;
+package com.ssafy.sandbox.crud.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

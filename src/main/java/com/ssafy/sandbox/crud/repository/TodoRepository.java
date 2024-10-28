@@ -1,6 +1,6 @@
-package com.ssafy.sandbox.repository;
+package com.ssafy.sandbox.crud.repository;
 
-import com.ssafy.sandbox.domain.Todo;
+import com.ssafy.sandbox.crud.domain.Todo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;

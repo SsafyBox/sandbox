@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.dto.request;
+package com.ssafy.sandbox.crud.dto.request;
 
 import lombok.*;
 import org.springframework.lang.NonNull;
