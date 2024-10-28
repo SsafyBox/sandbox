@@ -2,8 +2,7 @@ package com.sandbox.jueun.pagination.controller;
 
 import com.sandbox.jueun.pagination.dto.ArticleCursorListResponseDto;
 import com.sandbox.jueun.pagination.dto.ArticleOffsetListResponseDto;
-import com.sandbox.jueun.pagination.dto.ArticlePreviewDto;
-import com.sandbox.jueun.pagination.servic.ArticleService;
+import com.sandbox.jueun.pagination.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -26,9 +25,7 @@ public class ArticleController {
         log.info("size {}, cursorId {}", size, page);
         Pageable pageRequest = PageRequest.of(page-1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
-        Page<ArticlePreviewDto> result = articleService.getArticlesWithOffset(pageRequest);
-
-        ArticleOffsetListResponseDto responseDto= ArticleOffsetListResponseDto.from(result);
+        ArticleOffsetListResponseDto responseDto = articleService.getArticlesWithOffset(pageRequest);
 
        return ResponseEntity.ok().body(responseDto);
     }
@@ -42,9 +39,7 @@ public class ArticleController {
 
         PageRequest pageRequest = PageRequest.of(0, size);
 
-        Slice<ArticlePreviewDto> result = articleService.getArticlesWithCursor(pageRequest, cursorId);
-
-        ArticleCursorListResponseDto responseDto = ArticleCursorListResponseDto.from(result);
+        ArticleCursorListResponseDto responseDto = articleService.getArticlesWithCursor(pageRequest, cursorId);
 
         return ResponseEntity.ok().body(responseDto);
     }
