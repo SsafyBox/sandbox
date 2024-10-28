@@ -31,18 +31,18 @@ public class ArticleController {
             @RequestParam(defaultValue = DEFAULT_PAGE_NO) Integer page,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ArticleResponse> list = articleService.findArticleByOffset(pageable);
+        Page<ArticleResponse> articles = articleService.findArticleByOffset(pageable);
 
-        ArticlesByOffsetResponse articles = ArticlesByOffsetResponse.builder()
-                .currentPageNumber(list.getNumber())
-                .size(list.getSize())
-                .totalPage(list.getTotalPages())
-                .hasNext(list.hasNext())
-                .hasPrevious(list.hasPrevious())
-                .articles(list.getContent())
+        ArticlesByOffsetResponse articlesResponse = ArticlesByOffsetResponse.builder()
+                .currentPageNumber(articles.getNumber())
+                .size(articles.getSize())
+                .totalPage(articles.getTotalPages())
+                .hasNext(articles.hasNext())
+                .hasPrevious(articles.hasPrevious())
+                .articles(articles.getContent())
                 .build();
 
-        return ResponseEntity.ok(articles);
+        return ResponseEntity.ok(articlesResponse);
     }
 
     @GetMapping("/cursor")
