@@ -10,5 +10,6 @@ import java.util.List;
 public interface ArticleService {
 
     Page<ArticleResponse> findArticleByOffset(Pageable pageable);
+    List<ArticleResponse> findArticleByCursor(Long cursorId, Pageable pageable);
 
 }

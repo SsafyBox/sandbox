@@ -18,9 +18,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
 
-
     @Override
     public Page<ArticleResponse> findArticleByOffset(Pageable pageable) {
         return articleRepository.findPageBy(pageable);
+    }
+
+    @Override
+    public List<ArticleResponse> findArticleByCursor(Long cursorId, Pageable pageable) {
+        return articleRepository.findByIdGreaterThanOrderByIdAsc(cursorId, pageable);
     }
 }

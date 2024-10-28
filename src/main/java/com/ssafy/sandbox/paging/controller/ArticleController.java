@@ -2,6 +2,7 @@ package com.ssafy.sandbox.paging.controller;
 
 import com.ssafy.sandbox.paging.domain.Article;
 import com.ssafy.sandbox.paging.dto.ArticleResponse;
+import com.ssafy.sandbox.paging.dto.ArticlesByCursorResponse;
 import com.ssafy.sandbox.paging.dto.ArticlesByOffsetResponse;
 import com.ssafy.sandbox.paging.service.ArticleService;
 import lombok.Getter;
@@ -23,10 +24,12 @@ public class ArticleController {
     private final ArticleService articleService;
     private static final String DEFAULT_PAGE_NO = "1";
     private static final String DEFAULT_PAGE_SIZE = "10";
+    private static final String DEFAULT_CURSOR_ID = "0";
 
     @GetMapping("/offset")
-    public ResponseEntity<ArticlesByOffsetResponse> findArticleByOffset(@RequestParam(defaultValue = DEFAULT_PAGE_NO) Integer page,
-                                                @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
+    public ResponseEntity<ArticlesByOffsetResponse> findArticleByOffset(
+            @RequestParam(defaultValue = DEFAULT_PAGE_NO) Integer page,
+            @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ArticleResponse> list = articleService.findArticleByOffset(pageable);
 
@@ -42,5 +45,20 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
+    @GetMapping("/cursor")
+    public ResponseEntity<ArticlesByCursorResponse> findArticleByCursor(
+            @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size,
+            @RequestParam(defaultValue = DEFAULT_CURSOR_ID) Long cursorId) {
+        Pageable pageable = PageRequest.of(0, size);
+        List<ArticleResponse> articles = articleService.findArticleByCursor(cursorId, pageable);
+        Long lastId = !articles.isEmpty() ? articles.get(articles.size() - 1).getId() : cursorId;
+
+        ArticlesByCursorResponse articlesResponse = ArticlesByCursorResponse.builder()
+                .lastId(lastId)
+                .articles(articles)
+                .build();
+
+        return ResponseEntity.ok(articlesResponse);
+    }
 
 }
