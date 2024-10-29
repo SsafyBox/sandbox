@@ -1,9 +1,9 @@
-package com.ssafy.sandbox.service;
+package com.ssafy.sandbox.crud.service;
 
-import com.ssafy.sandbox.domain.TodoEntity;
-import com.ssafy.sandbox.dto.request.CreateRequestDto;
-import com.ssafy.sandbox.dto.response.CreateResponseDto;
-import com.ssafy.sandbox.repository.TodoRepository;
+import com.ssafy.sandbox.crud.domain.TodoEntity;
+import com.ssafy.sandbox.crud.dto.request.CreateRequestDto;
+import com.ssafy.sandbox.crud.dto.response.CreateResponseDto;
+import com.ssafy.sandbox.crud.repository.TodoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,9 @@ public class TodoService {
     private final TodoRepository todoRepository;
 
     public CreateResponseDto create(CreateRequestDto createRequestDto) {
-        TodoEntity todoEntity =  new TodoEntity();
-        todoEntity.setContent(createRequestDto.getContent());
+        TodoEntity todoEntity = TodoEntity.builder()
+                                .content(createRequestDto.getContent())
+                                .completed(false).build();
         return todoRepository.save(todoEntity);
     }
 

@@ -1,7 +1,7 @@
-package com.ssafy.sandbox.repository;
+package com.ssafy.sandbox.crud.repository;
 
-import com.ssafy.sandbox.domain.TodoEntity;
-import com.ssafy.sandbox.dto.response.CreateResponseDto;
+import com.ssafy.sandbox.crud.domain.TodoEntity;
+import com.ssafy.sandbox.crud.dto.response.CreateResponseDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -29,7 +29,7 @@ public class TodoRepository {
     public void update(Long id) {
         TodoEntity entity = em.find(TodoEntity.class, id);
         if (entity != null) {
-            entity.setCompleted(!entity.getCompleted());
+            entity.toggleCompleted();
             em.persist(entity);
         }
     }
@@ -40,5 +40,4 @@ public class TodoRepository {
             em.remove(entity);
         }
     }
-
 }
